@@ -1,0 +1,111 @@
+/* WebcamCapture.css - Styles for the webcam component */
+
+.webcam-container {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.webcam {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.webcam-controls {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.capture-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  background-color: #2196f3;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.capture-button:hover {
+  background-color: #1976d2;
+}
+
+.capture-button:disabled {
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+.capture-button.capturing {
+  background-color: #f44336;
+}
+
+.capture-button.capturing:hover {
+  background-color: #d32f2f;
+}
+
+.camera-status {
+  margin: 10px 0 0;
+  color: #757575;
+  font-size: 0.9rem;
+}
+
+.capture-indicator {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.pulse-circle {
+  width: 10px;
+  height: 10px;
+  background-color: #f44336;
+  border-radius: 50%;
+  margin-right: 8px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .webcam-container {
+    max-width: 100%;
+    border-radius: 0;
+  }
+
+  .capture-button {
+    width: 100%;
+  }
+}
