@@ -1,0 +1,62 @@
+# Root .gitignore for React frontend + Python backend + common OS/IDE files
+
+# Node / React
+frontend/node_modules/
+frontend/.pnp/
+frontend/.pnp.js
+frontend/pnp.*.cjs
+frontend/.yarn/*
+frontend/dist/
+frontend/build/
+frontend/.cache/
+frontend/.parcel-cache/
+frontend/coverage/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.env.local
+frontend/.env.*.local
+frontend/.env
+
+# Python
+backend/__pycache__/
+backend/*.py[cod]
+backend/*$py.class
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.ruff_cache/
+backend/.coverage
+backend/.coverage.*
+backend/coverage.xml
+backend/htmlcov/
+backend/.env
+backend/.venv/
+backend/venv/
+backend/env/
+backend/.python-version
+backend/.ipynb_checkpoints/
+backend/.DS_Store
+
+# Global environment files (if present at root)
+.env
+.venv/
+venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.log
+
+# MacOS
+.AppleDouble
+.LSOverride
+
+# Misc
+*.tmp
+*.temp
