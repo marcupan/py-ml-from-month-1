@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Connection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Backend Connection Test</h1>
+    <p>This page helps test the connection to the backend server.</p>
+
+    <div>
+        <button id="testHealth">Test Health Endpoint</button>
+        <button id="testConnection">Test Connection Endpoint</button>
+    </div>
+
+    <h2>Results:</h2>
+    <pre id="results">Click a button above to test the connection.</pre>
+
+    <script>
+        document.getElementById('testHealth').addEventListener('click', async () => {
+            const resultsElement = document.getElementById('results');
+            resultsElement.innerHTML = 'Testing health endpoint...';
+
+            try {
+                const response = await fetch('http://localhost:3006/api/health');
+                const data = await response.json();
+
+                resultsElement.innerHTML = `<span class="success">SUCCESS!</span>\nHealth endpoint responded with:\n\n${JSON.stringify(data, null, 2)}`;
+                console.log('Health endpoint response:', data);
+            } catch (error) {
+                resultsElement.innerHTML = `<span class="error">ERROR!</span>\nFailed to connect to health endpoint:\n\n${error.message}`;
+                console.error('Health endpoint error:', error);
+            }
+        });
+
+        document.getElementById('testConnection').addEventListener('click', async () => {
+            const resultsElement = document.getElementById('results');
+            resultsElement.innerHTML = 'Testing connection endpoint...';
+
+            try {
+                const response = await fetch('http://localhost:3006/api/test');
+                const data = await response.json();
+
+                resultsElement.innerHTML = `<span class="success">SUCCESS!</span>\nConnection endpoint responded with:\n\n${JSON.stringify(data, null, 2)}`;
+                console.log('Connection endpoint response:', data);
+            } catch (error) {
+                resultsElement.innerHTML = `<span class="error">ERROR!</span>\nFailed to connect to test endpoint:\n\n${error.message}`;
+                console.error('Connection endpoint error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
