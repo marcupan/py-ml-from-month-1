@@ -49,119 +49,119 @@
     </style>
 </head>
 <body>
-    <h1>Webcam Capture Test</h1>
-    <p>This page helps test the webcam capture and image sending functionality.</p>
+<h1>Webcam Capture Test</h1>
+<p>This page helps test the webcam capture and image sending functionality.</p>
 
-    <div>
-        <button id="startWebcam">Start Webcam</button>
-        <button id="captureImage" disabled>Capture Image</button>
-        <button id="sendImage" disabled>Send Image to Backend</button>
-    </div>
+<div>
+    <button id="startWebcam">Start Webcam</button>
+    <button id="captureImage" disabled>Capture Image</button>
+    <button id="sendImage" disabled>Send Image to Backend</button>
+</div>
 
-    <h2>Webcam:</h2>
-    <video id="webcam" autoplay playsinline></video>
+<h2>Webcam:</h2>
+<video id="webcam" autoplay playsinline></video>
 
-    <h2>Captured Image:</h2>
-    <canvas id="canvas" class="hidden"></canvas>
-    <img id="capturedImage" src="" alt="Captured image will appear here" class="hidden">
+<h2>Captured Image:</h2>
+<canvas id="canvas" class="hidden"></canvas>
+<img id="capturedImage" src="" alt="Captured image will appear here" class="hidden">
 
-    <h2>Results:</h2>
-    <pre id="results">Start the webcam, capture an image, and send it to the backend.</pre>
+<h2>Results:</h2>
+<pre id="results">Start the webcam, capture an image, and send it to the backend.</pre>
 
-    <script>
-        const startWebcamBtn = document.getElementById('startWebcam');
-        const captureImageBtn = document.getElementById('captureImage');
-        const sendImageBtn = document.getElementById('sendImage');
-        const webcamElement = document.getElementById('webcam');
-        const canvasElement = document.getElementById('canvas');
-        const capturedImageElement = document.getElementById('capturedImage');
-        const resultsElement = document.getElementById('results');
+<script>
+    const startWebcamBtn = document.getElementById('startWebcam');
+    const captureImageBtn = document.getElementById('captureImage');
+    const sendImageBtn = document.getElementById('sendImage');
+    const webcamElement = document.getElementById('webcam');
+    const canvasElement = document.getElementById('canvas');
+    const capturedImageElement = document.getElementById('capturedImage');
+    const resultsElement = document.getElementById('results');
 
-        let stream = null;
-        let capturedImageData = null;
+    let stream = null;
+    let capturedImageData = null;
 
-        // Start webcam
-        startWebcamBtn.addEventListener('click', async () => {
-            try {
-                resultsElement.innerHTML = 'Starting webcam...';
+    // Start webcam
+    startWebcamBtn.addEventListener('click', async () => {
+        try {
+            resultsElement.innerHTML = 'Starting webcam...';
 
-                stream = await navigator.mediaDevices.getUserMedia({
-                    video: {
-                        width: 640,
-                        height: 480
-                    }
-                });
+            stream = await navigator.mediaDevices.getUserMedia({
+                video: {
+                    width: 640,
+                    height: 480
+                }
+            });
 
-                webcamElement.srcObject = stream;
+            webcamElement.srcObject = stream;
 
-                resultsElement.innerHTML = '<span class="success">Webcam started successfully!</span>';
-                captureImageBtn.disabled = false;
-                startWebcamBtn.disabled = true;
-            } catch (error) {
-                resultsElement.innerHTML = `<span class="error">ERROR!</span>\nFailed to start webcam:\n\n${error.message}`;
-                console.error('Webcam error:', error);
-            }
-        });
+            resultsElement.innerHTML = '<span class="success">Webcam started successfully!</span>';
+            captureImageBtn.disabled = false;
+            startWebcamBtn.disabled = true;
+        } catch (error) {
+            resultsElement.innerHTML = `<span class="error">ERROR!</span>\nFailed to start webcam:\n\n${error.message}`;
+            console.error('Webcam error:', error);
+        }
+    });
 
-        // Capture image
-        captureImageBtn.addEventListener('click', () => {
-            try {
-                resultsElement.innerHTML = 'Capturing image...';
+    // Capture image
+    captureImageBtn.addEventListener('click', () => {
+        try {
+            resultsElement.innerHTML = 'Capturing image...';
 
-                // Set canvas dimensions to match video
-                canvasElement.width = webcamElement.videoWidth;
-                canvasElement.height = webcamElement.videoHeight;
+            // Set canvas dimensions to match video
+            canvasElement.width = webcamElement.videoWidth;
+            canvasElement.height = webcamElement.videoHeight;
 
-                // Draw video frame to canvas
-                const ctx = canvasElement.getContext('2d');
-                ctx.drawImage(webcamElement, 0, 0, canvasElement.width, canvasElement.height);
+            // Draw video frame to canvas
+            const ctx = canvasElement.getContext('2d');
+            ctx.drawImage(webcamElement, 0, 0, canvasElement.width, canvasElement.height);
 
-                // Get image data as base64 string
-                capturedImageData = canvasElement.toDataURL('image/jpeg');
+            // Get image data as base64 string
+            capturedImageData = canvasElement.toDataURL('image/jpeg');
 
-                // Display captured image
-                capturedImageElement.src = capturedImageData;
-                capturedImageElement.classList.remove('hidden');
+            // Display captured image
+            capturedImageElement.src = capturedImageData;
+            capturedImageElement.classList.remove('hidden');
 
-                resultsElement.innerHTML = '<span class="success">Image captured successfully!</span>';
-                sendImageBtn.disabled = false;
-            } catch (error) {
-                resultsElement.innerHTML = `<span class="error">ERROR!</span>\nFailed to capture image:\n\n${error.message}`;
-                console.error('Capture error:', error);
-            }
-        });
+            resultsElement.innerHTML = '<span class="success">Image captured successfully!</span>';
+            sendImageBtn.disabled = false;
+        } catch (error) {
+            resultsElement.innerHTML = `<span class="error">ERROR!</span>\nFailed to capture image:\n\n${error.message}`;
+            console.error('Capture error:', error);
+        }
+    });
 
-        // Send image to backend
-        sendImageBtn.addEventListener('click', async () => {
-            try {
-                resultsElement.innerHTML = 'Sending image to backend...';
+    // Send image to backend
+    sendImageBtn.addEventListener('click', async () => {
+        try {
+            resultsElement.innerHTML = 'Sending image to backend...';
 
-                const response = await fetch('http://localhost:3006/api/recognize', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        image: capturedImageData
-                    })
-                });
+            const response = await fetch('http://localhost:3006/api/recognize', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    image: capturedImageData
+                })
+            });
 
-                const data = await response.json();
+            const data = await response.json();
 
-                resultsElement.innerHTML = `<span class="success">SUCCESS!</span>\nBackend responded with:\n\n${JSON.stringify(data, null, 2)}`;
-                console.log('Recognition response:', data);
-            } catch (error) {
-                resultsElement.innerHTML = `<span class="error">ERROR!</span>\nFailed to send image to backend:\n\n${error.message}`;
-                console.error('API error:', error);
-            }
-        });
+            resultsElement.innerHTML = `<span class="success">SUCCESS!</span>\nBackend responded with:\n\n${JSON.stringify(data, null, 2)}`;
+            console.log('Recognition response:', data);
+        } catch (error) {
+            resultsElement.innerHTML = `<span class="error">ERROR!</span>\nFailed to send image to backend:\n\n${error.message}`;
+            console.error('API error:', error);
+        }
+    });
 
-        // Clean up on page unload
-        window.addEventListener('beforeunload', () => {
-            if (stream) {
-                stream.getTracks().forEach(track => track.stop());
-            }
-        });
-    </script>
+    // Clean up on page unload
+    window.addEventListener('beforeunload', () => {
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+        }
+    });
+</script>
 </body>
 </html>

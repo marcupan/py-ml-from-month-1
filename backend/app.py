@@ -30,6 +30,7 @@ CORS(app)
 # Initialize the object recognizer
 recognizer = ObjectRecognizer()
 
+
 @app.route('/api/recognize', methods=['POST'])
 def recognize_objects():
     """
@@ -81,6 +82,7 @@ def recognize_objects():
         logger.error(f"Error during object recognition: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
     """
@@ -95,6 +97,7 @@ def health_check():
         'message': 'Object recognition API is running'
     })
 
+
 @app.route('/api/test', methods=['GET'])
 def test_endpoint():
     """
@@ -108,6 +111,7 @@ def test_endpoint():
         'message': 'Backend connection successful',
         'status': 'ok'
     })
+
 
 if __name__ == '__main__':
     # Get port from environment variable or use default

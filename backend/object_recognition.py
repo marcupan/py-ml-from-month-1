@@ -17,6 +17,7 @@ import base64
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 class ObjectRecognizer:
     """
     Class for recognizing objects in images using a pre-trained model.
@@ -196,6 +197,7 @@ class ObjectRecognizer:
         except Exception as e:
             logger.error(f"Error processing base64 image: {str(e)}")
             raise
+
 
 # Example usage
 if __name__ == "__main__":
