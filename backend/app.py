@@ -104,7 +104,7 @@ def test_endpoint():
     Simple test endpoint to verify connectivity.
 
     Returns:
-        JSON response with test message
+        JSON response with a test message
     """
     logger.info("Test endpoint called")
     return jsonify({
@@ -114,7 +114,7 @@ def test_endpoint():
 
 
 if __name__ == '__main__':
-    # Get port from environment variable or use default
+    # Get port from the environment variable or use default
     port = int(os.environ.get('PORT', 3006))
 
     # Run the Flask app
