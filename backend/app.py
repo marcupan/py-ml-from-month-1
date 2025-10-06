@@ -9,6 +9,8 @@ and returns the recognized objects with their confidence scores.
 import os
 import base64
 import io
+
+from PIL.Image import Image
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from PIL import Image
@@ -64,7 +66,7 @@ def recognize_objects():
         # Decode the base64 image
         try:
             image_bytes = base64.b64decode(image_data)
-            image = Image.open(io.BytesIO(image_bytes))
+            image: Image = Image.open(io.BytesIO(image_bytes))
             logger.info(f"Image decoded successfully: {image.size}")
         except Exception as e:
             logger.error(f"Error decoding image: {str(e)}")
