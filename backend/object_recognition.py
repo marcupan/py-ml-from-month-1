@@ -85,7 +85,7 @@ class ObjectRecognizer:
         Args:
             image (PIL.Image): The input image.
             threshold (float): Confidence threshold for object detection.
-                              Default is 0.5.
+                              The default is 0.5.
             max_objects (int): Maximum number of objects to return.
                               Default is 10.
 
