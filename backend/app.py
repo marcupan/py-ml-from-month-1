@@ -67,6 +67,7 @@ def recognize_objects():
         try:
             image_bytes = base64.b64decode(image_data)
             image: Image = Image.open(io.BytesIO(image_bytes))
+
             logger.info(f"Image decoded successfully: {image.size}")
         except Exception as e:
             logger.error(f"Error decoding image: {str(e)}")
@@ -75,6 +76,7 @@ def recognize_objects():
         # Perform object recognition
         logger.info("Starting object recognition")
         objects = recognizer.recognize(image)
+
         logger.info(f"Recognition complete, found {len(objects)} objects")
 
         # Return the results
