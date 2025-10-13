@@ -67,22 +67,6 @@
             console.error('Health endpoint error:', error);
         }
     });
-
-    document.getElementById('testConnection').addEventListener('click', async () => {
-        const resultsElement = document.getElementById('results');
-        resultsElement.innerHTML = 'Testing connection endpoint...';
-
-        try {
-            const response = await fetch('http://localhost:3006/api/test');
-            const data = await response.json();
-
-            resultsElement.innerHTML = `<span class="success">SUCCESS!</span>\nConnection endpoint responded with:\n\n${JSON.stringify(data, null, 2)}`;
-            console.log('Connection endpoint response:', data);
-        } catch (error) {
-            resultsElement.innerHTML = `<span class="error">ERROR!</span>\nFailed to connect to test endpoint:\n\n${error.message}`;
-            console.error('Connection endpoint error:', error);
-        }
-    });
 </script>
 </body>
 </html>
