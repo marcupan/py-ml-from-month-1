@@ -102,21 +102,6 @@ def health_check():
     })
 
 
-@app.route('/api/test', methods=['GET'])
-def test_endpoint():
-    """
-    Simple test endpoint to verify connectivity.
-
-    Returns:
-        JSON response with a test message
-    """
-    logger.info("Test endpoint called")
-    return jsonify({
-        'message': 'Backend connection successful',
-        'status': 'ok'
-    })
-
-
 if __name__ == '__main__':
     # Get port from the environment variable or use default
     port = int(os.environ.get('PORT', 3006))
