@@ -1,8 +1,10 @@
 import React, {useRef, useCallback, useState, useEffect} from 'react';
 import Webcam from 'react-webcam';
 import axios from 'axios';
-import './WebcamCapture.css';
+
 import logger from '../utils/logger';
+
+import './WebcamCapture.css';
 
 /**
  * WebcamCapture component that handles webcam integration and object recognition
@@ -24,7 +26,7 @@ const WebcamCapture = ({
     const webcamRef = useRef(null);
     const [captureInterval, setCaptureInterval] = useState(null);
     const [isCameraReady, setIsCameraReady] = useState(false);
-      const isCapturingRef = useRef(isCapturing);
+    const isCapturingRef = useRef(isCapturing);
 
     // Backend API endpoint for object recognition
     const RECOGNITION_API_URL = 'http://127.0.0.1:3006/api/recognize';
@@ -33,8 +35,8 @@ const WebcamCapture = ({
 
     // Update ref whenever isCapturing changes
     useEffect(() => {
-      isCapturingRef.current = isCapturing;
-      logger.info('isCapturingRef updated', { isCapturing });
+        isCapturingRef.current = isCapturing;
+        logger.info('isCapturingRef updated', {isCapturing});
     }, [isCapturing]);
 
     /**
@@ -57,7 +59,7 @@ const WebcamCapture = ({
 
         try {
             logger.info('Attempting to capture screenshot');
-            // Capture image as base64 string
+            // Capture image as a base64 string
             logger.info('Webcam ref state', {
                 defined: !!webcamRef.current,
                 hasGetScreenshot: !!(webcamRef.current && webcamRef.current.getScreenshot),
@@ -80,7 +82,7 @@ const WebcamCapture = ({
             // Notify parent that recognition has started
             onRecognitionStart();
 
-            // Send image to backend for recognition
+            // Send image to the backend for recognition
             logger.info('Sending image to backend', {url: RECOGNITION_API_URL});
             try {
                 logger.info('Making API call to', RECOGNITION_API_URL);
@@ -145,7 +147,7 @@ const WebcamCapture = ({
         const interval = setInterval(captureAndRecognize, 3000); // Capture every 3 seconds
         setCaptureInterval(interval);
 
-        // Trigger first capture immediately
+        // Trigger the first capture immediately
         logger.info('Triggering first capture');
         captureAndRecognize();
     }, [isCapturing, captureAndRecognize, onStartCapture]);
@@ -237,7 +239,7 @@ const WebcamCapture = ({
         setIsCameraReady(true);
     }, []);
 
-    // Clean up interval on component unmount
+    // Cleanup interval on component unmount
     useEffect(() => {
         logger.info('WebcamCapture component mounted');
 
@@ -259,7 +261,7 @@ const WebcamCapture = ({
         };
     }, []);
 
-    // Set up capture interval when component mounts if isCapturing is true
+    // Set up a capture interval when component mounts if isCapturing is true
     useEffect(() => {
         if (isCapturing && !captureInterval && isCameraReady) {
             logger.info('Component mounted with isCapturing=true, setting up interval');
@@ -274,7 +276,7 @@ const WebcamCapture = ({
             }, 3000);
             setCaptureInterval(interval);
 
-            // Trigger first capture immediately, but only if isCapturing is true
+            // Trigger first captures immediately, but only if isCapturing is true
             if (isCapturing) {
                 logger.info('Triggering first capture immediately, isCapturing is true');
                 captureAndRecognize();
@@ -292,20 +294,20 @@ const WebcamCapture = ({
     return (
         <div className="webcam-container">
             <Webcam
-                audio={false}
                 ref={webcamRef}
+                audio={false}
+                className="webcam"
                 screenshotFormat="image/jpeg"
                 videoConstraints={videoConstraints}
                 onUserMedia={handleWebcamInit}
                 onUserMediaError={handleWebcamError}
-                className="webcam"
             />
 
             <div className="webcam-controls">
                 <button
-                    onClick={toggleCapture}
                     disabled={!isCameraReady}
                     className={`capture-button ${isCapturing ? 'capturing' : ''}`}
+                    onClick={toggleCapture}
                 >
                     {isCapturing ? 'Stop Recognition' : 'Start Recognition'}
                 </button>
