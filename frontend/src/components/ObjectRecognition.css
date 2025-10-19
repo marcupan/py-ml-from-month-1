@@ -1,154 +1,154 @@
 /* ObjectRecognition.css - Styles for the object recognition results component */
 
 .recognition-container {
-  width: 100%;
+    width: 100%;
 }
 
 .no-objects {
-  padding: 30px 20px;
-  text-align: center;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  color: #757575;
+    padding: 30px 20px;
+    text-align: center;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    color: #757575;
 }
 
 .instruction {
-  font-size: 0.9rem;
-  margin-top: 10px;
+    font-size: 0.9rem;
+    margin-top: 10px;
 }
 
 .objects-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 20px 0;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
 }
 
 .object-item {
-  padding: 15px;
-  margin-bottom: 10px;
-  background-color: white;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
 
 .object-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .object-name {
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-  color: #333;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #333;
 }
 
 .object-confidence {
-  position: relative;
-  height: 24px;
-  background-color: #f5f5f5;
-  border-radius: 12px;
-  overflow: hidden;
+    position: relative;
+    height: 24px;
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .confidence-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  border-radius: 12px;
-  transition: width 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 12px;
+    transition: width 0.5s ease;
 }
 
 .high-confidence .confidence-bar {
-  background-color: #4caf50;
+    background-color: #4caf50;
 }
 
 .medium-confidence .confidence-bar {
-  background-color: #ff9800;
+    background-color: #ff9800;
 }
 
 .low-confidence .confidence-bar {
-  background-color: #f44336;
+    background-color: #f44336;
 }
 
 .confidence-text {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #333;
-  text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
 }
 
 .recognition-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-  font-size: 0.9rem;
-  color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #666;
 }
 
 .confidence-legend {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .legend-item {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 0.75rem;
-  color: white;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    color: white;
 }
 
 .legend-item.high-confidence {
-  background-color: #4caf50;
+    background-color: #4caf50;
 }
 
 .legend-item.medium-confidence {
-  background-color: #ff9800;
+    background-color: #ff9800;
 }
 
 .legend-item.low-confidence {
-  background-color: #f44336;
+    background-color: #f44336;
 }
 
 .recognition-explanation {
-  background-color: #e3f2fd;
-  border-radius: 8px;
-  padding: 15px;
-  margin-top: 20px;
+    background-color: #e3f2fd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
 }
 
 .recognition-explanation h3 {
-  margin-top: 0;
-  color: #1976d2;
-  font-size: 1.1rem;
+    margin-top: 0;
+    color: #1976d2;
+    font-size: 1.1rem;
 }
 
 .recognition-explanation p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #333;
-  margin: 10px 0 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #333;
+    margin: 10px 0 0;
 }
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-  .recognition-info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
+    .recognition-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 
-  .confidence-legend {
-    margin-top: 5px;
-  }
+    .confidence-legend {
+        margin-top: 5px;
+    }
 }

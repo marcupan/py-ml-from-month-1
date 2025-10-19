@@ -34,7 +34,7 @@ function App() {
         setRecognizedObjects(objects);
         setIsRecognizing(false);
     };
-
+    
     /**
      * Handler for when a recognition process starts
      */
